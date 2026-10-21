@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Loja Católica - Artigos Religiosos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet" />
+  <title>Mesa &amp; Ela | Acessórios para sua mesa</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,8 +11,10 @@
 
   <header>
     <div class="header-container">
-      <img src="img/logo.png" alt="Logo" class="logo"/>
-      <div class="header-title"></div>
+      <div class="header-title">
+        <h1>Mesa &amp; Ela</h1>
+        <p>Acessórios para sua rotina de trabalho</p>
+      </div>
     </div>
   </header>
 
@@ -23,7 +24,7 @@
   </nav>
 
   <div class="banner">
-    Fortaleça sua fé com nossos artigos religiosos
+    Seu espaço de trabalho, com mais estilo e praticidade
   </div>
 
   <div class="pesquisa-container">
@@ -49,9 +50,9 @@
     <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar via WhatsApp</button>
   </div>
 
-  <section id="contato" style="padding: 40px; background-color: #eef2ea;">
+  <section id="contato" style="padding: 40px; background-color: #f8edf1;">
     <h2 style="text-align: center;">Contato</h2>
-    <p style="text-align: center;">📞 WhatsApp: (46) 99140-2714<br>📧 Email: lojacatolica@exemplo.com</p>
+    <p style="text-align: center;">📞 WhatsApp: (46) 99140-2714</p>
   </section>
 
   <script>
@@ -59,70 +60,103 @@
 
     const produtos = [
       {
-        id: "terco", nome: "Terço", preco: 19.90,
-        imagens: ["img/terço.png", "img/terco.jpeg"],
-        descricao: "Um companheiro especial para os momentos de oração. Ideal para presentear e fortalecer a devoção no dia a dia.",
-        relacionados: ["rosario", "escapulario", "medalha-sao-bento"]
+        id: "mousepad-gamer-rosa", nome: "Mousepad Gamer Rosa LED RGB 80x30cm", preco: 64.68,
+        imagens: [
+          "https://images.kabum.com.br/produtos/fotos/sync_mirakl/688544/xlarge/Mousepad-Gamer-Rosa-LED-RGB-7-Cores-Grande-80x30cm-Antiderrapante-Usb_1761257911.jpg",
+          "https://images.kabum.com.br/produtos/fotos/sync_mirakl/688544/xlarge/Mousepad-Gamer-Rosa-LED-RGB-7-Cores-Grande-80x30cm-Antiderrapante-Usb_1761257912.jpg",
+          "https://images.kabum.com.br/produtos/fotos/sync_mirakl/688544/xlarge/Mousepad-Gamer-Rosa-LED-RGB-7-Cores-Grande-80x30cm-Antiderrapante-Usb_1761257916.jpg"
+        ],
+        descricao: "Mousepad gamer rosa de 80 x 30 cm, com base antiderrapante e iluminação LED RGB com 7 cores. Conexão USB. Preço consultado na KaBuM.",
+        relacionados: ["mouse-vertical-rosa", "teclado-force-x-rosa", "kit-marvo-wireless"]
       },
       {
-        id: "crucifixo-parede", nome: "Crucifixo de Parede", preco: 39.90,
-        imagens: ["img/crucifixo1.png"],
-        descricao: "Uma peça de fé para decorar e abençoar sua casa. Uma opção especial para oratórios e ambientes de oração.",
-        relacionados: ["imagem-nossa-senhora", "imagem-sao-francisco", "velas"]
+        id: "mouse-vertical-rosa", nome: "Mouse Vertical Sem Fio Rosa", preco: 49.90,
+        precoEstimado: true,
+        imagens: [
+          "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRu9as1NLivGChtsQ6tJy73UHY47Hg2TjGv74LyvyLP3InnCuE6SWchKzCyjJ3f11RMPEFT76XDIhG7ImoPs3Q3TpKGlmGZ4tBPuCscWFQGXhfNwF-vh-T7yw"
+        ],
+        descricao: "Mouse vertical rosa sem fio, com conexão 2,4 GHz e recarga por USB-C, conforme o produto do link enviado. Preço estimado; confirme o valor antes da venda.",
+        relacionados: ["mousepad-gamer-rosa", "apoio-punho", "teclado-force-x-rosa"]
       },
       {
-        id: "imagem-nossa-senhora", nome: "Imagem de Nossa Senhora", preco: 59.90,
-        imagens: ["img/nossasenhora.png"],
-        descricao: "Imagem religiosa de Nossa Senhora, indicada para compor seu altar, oratório ou espaço de oração.",
-        relacionados: ["crucifixo-parede", "terco", "velas"]
+        id: "teclado-force-x-rosa", nome: "Teclado Force-X Rosa Rainbow", preco: 86.26,
+        imagens: [
+          "https://images.kabum.com.br/produtos/fotos/sync_mirakl/237469/xlarge/Teclado-Rosa-Force-X-Rainbow-USB-Anti-ghosting-Tc201pink_1776696540.jpg"
+        ],
+        descricao: "Teclado Force-X rosa com iluminação rainbow, padrão ABNT2, conexão USB, 19 teclas anti-ghosting e 12 teclas de atalho. Preço consultado na KaBuM.",
+        relacionados: ["mousepad-gamer-rosa", "mouse-vertical-rosa", "kit-marvo-wireless"]
       },
       {
-        id: "biblia", nome: "Bíblia Sagrada", preco: 49.90,
-        imagens: ["img/biblia.jpg"],
-        descricao: "A Palavra de Deus para acompanhar sua caminhada de fé, suas orações e momentos de reflexão.",
-        relacionados: ["terco", "crucifixo-parede", "escapulario"]
+        id: "kit-marvo-wireless", nome: "Kit Teclado e Mouse Marvo Sem Fio Branco", preco: 149.90,
+        precoEstimado: true,
+        imagens: [
+          "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRS7T3NUSrUI8zOykRsS8tSNkoN3HI7hxoSdyA5Tt5SPO3XdaqHQYBiCnOB5hbkWT4cF8yRJWDP-XSzQgxoP-A4mQS-ZTenJPqDfF4A2xo8c4ZdXpqy2RUm"
+        ],
+        descricao: "Kit sem fio Marvo WS005 na cor branca, com teclado ABNT2 e mouse de 1600 DPI. Preço estimado; confirme o valor antes da venda.",
+        relacionados: ["mousepad-gamer-rosa", "suporte-notebook", "organizador-mesa"]
       },
       {
-        id: "velas", nome: "Velas Abençoadas", preco: 14.90,
-        imagens: ["img/velas.jpg"],
-        descricao: "Para acompanhar suas orações e momentos de devoção. Uma presença acolhedora no seu espaço de fé.",
-        relacionados: ["imagem-nossa-senhora", "terco", "crucifixo-parede"]
+        id: "suporte-notebook", nome: "Suporte Ergonômico para Notebook", preco: 59.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Suporte compacto para elevar a tela do notebook e ajudar a organizar uma estação de trabalho confortável. Imagem ilustrativa; preço estimado.",
+        relacionados: ["mousepad-gamer-rosa", "organizador-mesa", "luminaria-mesa"]
       },
       {
-        id: "crucifixo-pequeno", nome: "Crucifixo Pequeno", preco: 29.90,
-        imagens: ["img/colar.png"],
-        descricao: "Um crucifixo pequeno para levar consigo e manter a fé sempre por perto.",
-        relacionados: ["escapulario", "medalha-sao-bento", "chaveiro"]
+        id: "organizador-mesa", nome: "Organizador de Mesa Multifuncional", preco: 39.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Organizador para deixar canetas, acessórios e itens do dia a dia sempre à mão. Imagem ilustrativa; preço estimado.",
+        relacionados: ["porta-canetas", "planner-semanal", "organizador-cabos"]
       },
       {
-        id: "medalha-sao-bento", nome: "Medalha de São Bento", preco: 24.90,
-        imagens: ["img/medalhasbento.jpg"],
-        descricao: "Um artigo de devoção a São Bento, ideal para quem deseja expressar sua fé ou presentear alguém especial.",
-        relacionados: ["terco", "escapulario", "crucifixo-pequeno"]
+        id: "luminaria-mesa", nome: "Luminária LED de Mesa", preco: 69.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Luminária de mesa para iluminar leituras e tarefas no escritório ou home office. Imagem ilustrativa; preço estimado.",
+        relacionados: ["planner-semanal", "suporte-notebook", "copo-termico"]
       },
       {
-        id: "imagem-sao-francisco", nome: "Imagem de São Francisco", preco: 69.90,
-        imagens: ["img/sfrancisco.jpg"],
-        descricao: "Imagem de São Francisco para seu altar, oratório ou ambiente de oração.",
-        relacionados: ["imagem-nossa-senhora", "crucifixo-parede", "terco"]
+        id: "porta-canetas", nome: "Porta-Canetas Minimalista", preco: 24.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Um toque organizado para guardar canetas e pequenos materiais de escritório. Imagem ilustrativa; preço estimado.",
+        relacionados: ["organizador-mesa", "planner-semanal", "kit-papelaria"]
       },
       {
-        id: "escapulario", nome: "Escapulário", preco: 12.90,
-        imagens: ["img/escapulario.jpg"],
-        descricao: "Um artigo de devoção para acompanhar sua rotina e expressar sua fé.",
-        relacionados: ["terco", "medalha-sao-bento", "crucifixo-pequeno"]
+        id: "planner-semanal", nome: "Planner Semanal de Mesa", preco: 34.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Planner para visualizar compromissos, tarefas e prioridades da semana no trabalho. Imagem ilustrativa; preço estimado.",
+        relacionados: ["kit-papelaria", "porta-canetas", "luminaria-mesa"]
       },
       {
-        id: "rosario", nome: "Rosário", preco: 22.90,
-        imagens: ["img/Rosario.jpg"],
-        descricao: "Um rosário para acompanhar suas orações e momentos de contemplação.",
-        relacionados: ["terco", "biblia", "escapulario"]
+        id: "copo-termico", nome: "Copo Térmico com Tampa", preco: 49.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Copo reutilizável para manter sua bebida favorita por perto durante o expediente. Imagem ilustrativa; preço estimado.",
+        relacionados: ["luminaria-mesa", "mousepad-gamer-rosa", "organizador-mesa"]
       },
       {
-        id: "chaveiro", nome: "Chaveiro", preco: 11.90,
-        imagens: ["img/chaveiro.jpg"],
-        descricao: "Um pequeno artigo religioso para levar consigo no dia a dia ou presentear.",
-        relacionados: ["crucifixo-pequeno", "medalha-sao-bento", "escapulario"]
+        id: "apoio-punho", nome: "Apoio Ergonômico para Punho", preco: 29.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Apoio macio para punho, pensado para acompanhar teclado e mouse na mesa de trabalho. Imagem ilustrativa; preço estimado.",
+        relacionados: ["mouse-vertical-rosa", "mousepad-gamer-rosa", "teclado-force-x-rosa"]
+      },
+      {
+        id: "organizador-cabos", nome: "Kit Organizador de Cabos", preco: 14.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Acessórios simples para manter cabos e carregadores mais organizados na mesa. Imagem ilustrativa; preço estimado.",
+        relacionados: ["organizador-mesa", "kit-marvo-wireless", "suporte-notebook"]
+      },
+      {
+        id: "kit-papelaria", nome: "Kit Papelaria em Tons Pastel", preco: 32.90,
+        precoEstimado: true,
+        imagens: ["https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80"],
+        descricao: "Conjunto de papelaria para anotações, listas e planejamento da rotina profissional. Imagem ilustrativa; preço estimado.",
+        relacionados: ["planner-semanal", "porta-canetas", "organizador-mesa"]
       },
     ];
 
@@ -142,6 +176,7 @@
             <h3>${prod.nome}</h3>
           </button>
           <p>${formatarPreco(prod.preco)}</p>
+          ${prod.precoEstimado ? '<small class="aviso-preco">Preço estimado</small>' : ''}
           <button class="btn-detalhes" type="button">Ver detalhes</button>
           <button class="btn-comprar" onclick="adicionarAoCarrinho('${prod.nome}', ${prod.preco})">Adicionar ao carrinho</button>
         `;
@@ -177,9 +212,10 @@
             </div>
           </div>
           <div class="informacoes-produto">
-            <p class="etiqueta-produto">ARTIGO RELIGIOSO</p>
+            <p class="etiqueta-produto">ACESSÓRIO PARA SUA MESA</p>
             <h1>${produto.nome}</h1>
             <p class="preco-detalhe">${formatarPreco(produto.preco)}</p>
+            ${produto.precoEstimado ? '<p class="aviso-preco">Preço estimado; confirme antes da compra.</p>' : ''}
             <p class="descricao-produto">${produto.descricao}</p>
             <button class="btn-comprar" type="button">Adicionar ao carrinho</button>
           </div>
@@ -211,6 +247,7 @@
             <h3>${relacionado.nome}</h3>
           </button>
           <p>${formatarPreco(relacionado.preco)}</p>
+          ${relacionado.precoEstimado ? '<small class="aviso-preco">Preço estimado</small>' : ''}
           <button class="btn-detalhes" type="button">Ver detalhes</button>
         `;
         card.querySelector('.produto-link').addEventListener('click', () => abrirProduto(relacionado.id));
