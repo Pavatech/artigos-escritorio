@@ -18,7 +18,7 @@
   </header>
 
   <nav>
-    <a href="#produtos">Início</a>
+    <a href="#produtos" onclick="mostrarCatalogo()">Início</a>
     <a href="#contato">Contato</a>
   </nav>
 
@@ -32,6 +32,8 @@
   </div>
 
   <section class="produtos" id="produtos"></section>
+
+  <section class="detalhe-produto" id="detalheProduto" hidden></section>
 
   <!-- Ícone flutuante do carrinho -->
   <button class="carrinho-icon" onclick="toggleCarrinho()">
@@ -56,34 +58,189 @@
     const carrinho = [];
 
     const produtos = [
-      { nome: "Terço", preco: 19.90, img: "img/terço.png" },
-      { nome: "Crucifixo de Parede", preco: 39.90, img: "img/crucifixo1.png" },
-      { nome: "Imagem de Nossa Senhora", preco: 59.90, img: "img/nossasenhora.png" },
-      { nome: "Bíblia Sagrada", preco: 49.90, img: "img/biblia.jpg" },
-      { nome: "Velas Abençoadas", preco: 14.90, img: "img/velas.jpg" },
-      { nome: "Crucifixo Pequeno", preco: 29.90, img: "img/colar.png" },
-      { nome: "Medalha de São Bento", preco: 24.90, img: "img/medalhasbento.jpg" },
-      { nome: "Imagem de São Francisco", preco: 69.90, img: "img/sfrancisco.jpg" },
-      { nome: "Escapulário", preco: 12.90, img: "img/escapulario.jpg" },
-      { nome: "Rosário", preco: 22.90, img: "img/rosario.jpg" },
-      { nome: "Chaveiro", preco: 11.90, img: "img/chaveiro.jpg" },
+      {
+        id: "terco", nome: "Terço", preco: 19.90,
+        imagens: ["img/terço.png", "img/terco.jpeg"],
+        descricao: "Um companheiro especial para os momentos de oração. Ideal para presentear e fortalecer a devoção no dia a dia.",
+        relacionados: ["rosario", "escapulario", "medalha-sao-bento"]
+      },
+      {
+        id: "crucifixo-parede", nome: "Crucifixo de Parede", preco: 39.90,
+        imagens: ["img/crucifixo1.png"],
+        descricao: "Uma peça de fé para decorar e abençoar sua casa. Uma opção especial para oratórios e ambientes de oração.",
+        relacionados: ["imagem-nossa-senhora", "imagem-sao-francisco", "velas"]
+      },
+      {
+        id: "imagem-nossa-senhora", nome: "Imagem de Nossa Senhora", preco: 59.90,
+        imagens: ["img/nossasenhora.png"],
+        descricao: "Imagem religiosa de Nossa Senhora, indicada para compor seu altar, oratório ou espaço de oração.",
+        relacionados: ["crucifixo-parede", "terco", "velas"]
+      },
+      {
+        id: "biblia", nome: "Bíblia Sagrada", preco: 49.90,
+        imagens: ["img/biblia.jpg"],
+        descricao: "A Palavra de Deus para acompanhar sua caminhada de fé, suas orações e momentos de reflexão.",
+        relacionados: ["terco", "crucifixo-parede", "escapulario"]
+      },
+      {
+        id: "velas", nome: "Velas Abençoadas", preco: 14.90,
+        imagens: ["img/velas.jpg"],
+        descricao: "Para acompanhar suas orações e momentos de devoção. Uma presença acolhedora no seu espaço de fé.",
+        relacionados: ["imagem-nossa-senhora", "terco", "crucifixo-parede"]
+      },
+      {
+        id: "crucifixo-pequeno", nome: "Crucifixo Pequeno", preco: 29.90,
+        imagens: ["img/colar.png"],
+        descricao: "Um crucifixo pequeno para levar consigo e manter a fé sempre por perto.",
+        relacionados: ["escapulario", "medalha-sao-bento", "chaveiro"]
+      },
+      {
+        id: "medalha-sao-bento", nome: "Medalha de São Bento", preco: 24.90,
+        imagens: ["img/medalhasbento.jpg"],
+        descricao: "Um artigo de devoção a São Bento, ideal para quem deseja expressar sua fé ou presentear alguém especial.",
+        relacionados: ["terco", "escapulario", "crucifixo-pequeno"]
+      },
+      {
+        id: "imagem-sao-francisco", nome: "Imagem de São Francisco", preco: 69.90,
+        imagens: ["img/sfrancisco.jpg"],
+        descricao: "Imagem de São Francisco para seu altar, oratório ou ambiente de oração.",
+        relacionados: ["imagem-nossa-senhora", "crucifixo-parede", "terco"]
+      },
+      {
+        id: "escapulario", nome: "Escapulário", preco: 12.90,
+        imagens: ["img/escapulario.jpg"],
+        descricao: "Um artigo de devoção para acompanhar sua rotina e expressar sua fé.",
+        relacionados: ["terco", "medalha-sao-bento", "crucifixo-pequeno"]
+      },
+      {
+        id: "rosario", nome: "Rosário", preco: 22.90,
+        imagens: ["img/Rosario.jpg"],
+        descricao: "Um rosário para acompanhar suas orações e momentos de contemplação.",
+        relacionados: ["terco", "biblia", "escapulario"]
+      },
+      {
+        id: "chaveiro", nome: "Chaveiro", preco: 11.90,
+        imagens: ["img/chaveiro.jpg"],
+        descricao: "Um pequeno artigo religioso para levar consigo no dia a dia ou presentear.",
+        relacionados: ["crucifixo-pequeno", "medalha-sao-bento", "escapulario"]
+      },
     ];
+
+    function formatarPreco(preco) {
+      return preco.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+    }
 
     function carregarProdutos(lista = produtos) {
       const container = document.getElementById('produtos');
       container.innerHTML = '';
-      lista.forEach((prod, index) => {
+      lista.forEach((prod) => {
         const div = document.createElement('div');
         div.className = 'produto';
         div.innerHTML = `
-          <img src="${prod.img}" alt="${prod.nome}">
-          <h3>${prod.nome}</h3>
-          <p>R$ ${prod.preco.toFixed(2)}</p>
+          <button class="produto-link" type="button" aria-label="Ver detalhes de ${prod.nome}">
+            <img src="${prod.imagens[0]}" alt="${prod.nome}">
+            <h3>${prod.nome}</h3>
+          </button>
+          <p>${formatarPreco(prod.preco)}</p>
+          <button class="btn-detalhes" type="button">Ver detalhes</button>
           <button class="btn-comprar" onclick="adicionarAoCarrinho('${prod.nome}', ${prod.preco})">Adicionar ao carrinho</button>
         `;
+        div.querySelector('.produto-link').addEventListener('click', () => abrirProduto(prod.id));
+        div.querySelector('.btn-detalhes').addEventListener('click', () => abrirProduto(prod.id));
         container.appendChild(div);
       });
     }
+
+    function abrirProduto(id, atualizarEndereco = true) {
+      const produto = produtos.find((item) => item.id === id);
+      if (!produto) {
+        return;
+      }
+
+      const catalogo = document.getElementById('produtos');
+      const detalhe = document.getElementById('detalheProduto');
+      const relacionados = produto.relacionados
+        .map((relacionadoId) => produtos.find((item) => item.id === relacionadoId))
+        .filter(Boolean);
+
+      detalhe.innerHTML = `
+        <button class="btn-voltar" type="button">← Voltar aos produtos</button>
+        <div class="detalhe-conteudo">
+          <div class="galeria-produto">
+            <img class="foto-principal" src="${produto.imagens[0]}" alt="${produto.nome}">
+            <div class="miniaturas" aria-label="Outras fotos de ${produto.nome}">
+              ${produto.imagens.map((imagem, indice) => `
+                <button class="miniatura${indice === 0 ? ' selecionada' : ''}" type="button" data-imagem="${indice}" aria-label="Ver foto ${indice + 1} de ${produto.nome}">
+                  <img src="${imagem}" alt="">
+                </button>
+              `).join('')}
+            </div>
+          </div>
+          <div class="informacoes-produto">
+            <p class="etiqueta-produto">ARTIGO RELIGIOSO</p>
+            <h1>${produto.nome}</h1>
+            <p class="preco-detalhe">${formatarPreco(produto.preco)}</p>
+            <p class="descricao-produto">${produto.descricao}</p>
+            <button class="btn-comprar" type="button">Adicionar ao carrinho</button>
+          </div>
+        </div>
+        <section class="relacionados-produto">
+          <h2>Você também pode gostar</h2>
+          <div class="produtos relacionados-lista"></div>
+        </section>
+      `;
+
+      detalhe.querySelector('.btn-voltar').addEventListener('click', mostrarCatalogo);
+      detalhe.querySelector('.informacoes-produto .btn-comprar')
+        .addEventListener('click', () => adicionarAoCarrinho(produto.nome, produto.preco));
+      detalhe.querySelectorAll('.miniatura').forEach((miniatura) => {
+        miniatura.addEventListener('click', () => {
+          detalhe.querySelector('.foto-principal').src = produto.imagens[miniatura.dataset.imagem];
+          detalhe.querySelectorAll('.miniatura').forEach((item) => item.classList.remove('selecionada'));
+          miniatura.classList.add('selecionada');
+        });
+      });
+
+      const listaRelacionados = detalhe.querySelector('.relacionados-lista');
+      relacionados.forEach((relacionado) => {
+        const card = document.createElement('div');
+        card.className = 'produto';
+        card.innerHTML = `
+          <button class="produto-link" type="button" aria-label="Ver detalhes de ${relacionado.nome}">
+            <img src="${relacionado.imagens[0]}" alt="${relacionado.nome}">
+            <h3>${relacionado.nome}</h3>
+          </button>
+          <p>${formatarPreco(relacionado.preco)}</p>
+          <button class="btn-detalhes" type="button">Ver detalhes</button>
+        `;
+        card.querySelector('.produto-link').addEventListener('click', () => abrirProduto(relacionado.id));
+        card.querySelector('.btn-detalhes').addEventListener('click', () => abrirProduto(relacionado.id));
+        listaRelacionados.appendChild(card);
+      });
+
+      catalogo.hidden = true;
+      detalhe.hidden = false;
+      if (atualizarEndereco) {
+        window.location.hash = `produto-${produto.id}`;
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function mostrarCatalogo() {
+      document.getElementById('detalheProduto').hidden = true;
+      document.getElementById('produtos').hidden = false;
+      window.location.hash = 'produtos';
+    }
+
+    window.addEventListener('hashchange', () => {
+      const idProduto = window.location.hash.slice(1).replace(/^produto-/, '');
+      if (window.location.hash.startsWith('#produto-')) {
+        abrirProduto(idProduto, false);
+      } else if (!document.getElementById('detalheProduto').hidden) {
+        document.getElementById('detalheProduto').hidden = true;
+        document.getElementById('produtos').hidden = false;
+      }
+    });
 
     function adicionarAoCarrinho(nome, preco) {
       carrinho.push({ nome, preco });
@@ -136,6 +293,9 @@
     }
 
     carregarProdutos();
+    if (window.location.hash.startsWith('#produto-')) {
+      abrirProduto(window.location.hash.slice('#produto-'.length), false);
+    }
   </script>
 </body>
 </html>
