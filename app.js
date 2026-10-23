@@ -11,7 +11,8 @@
     listaCarrinho: document.getElementById("listaCarrinho"),
     totalCarrinho: document.getElementById("totalCarrinho"),
     quantidadeCarrinho: document.getElementById("carrinhoQtd"),
-    popupCarrinho: document.getElementById("popupCarrinho")
+    popupCarrinho: document.getElementById("popupCarrinho"),
+    botaoCarrinho: document.getElementById("botaoCarrinho")
   };
 
   function escaparHtml(valor) {
@@ -181,6 +182,9 @@
   function adicionarAoCarrinho(nome, preco, cor = "") {
     carrinho.push({ nome, preco, cor: cor || "Sem preferência" });
     atualizarCarrinho();
+    elementos.botaoCarrinho.classList.remove("animar");
+    void elementos.botaoCarrinho.offsetWidth;
+    elementos.botaoCarrinho.classList.add("animar");
   }
 
   function removerDoCarrinho(indice) {
@@ -222,7 +226,7 @@
 
   elementos.busca.addEventListener("input", renderizarRota);
   elementos.botaoBuscar.addEventListener("click", renderizarRota);
-  document.getElementById("botaoCarrinho").addEventListener("click", () => {
+  elementos.botaoCarrinho.addEventListener("click", () => {
     elementos.popupCarrinho.style.display = elementos.popupCarrinho.style.display === "flex" ? "none" : "flex";
   });
   document.getElementById("finalizarCompra").addEventListener("click", finalizarCompra);
