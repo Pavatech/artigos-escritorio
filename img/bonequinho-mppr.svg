@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f7f0e9"/>
+  <ellipse cx="400" cy="505" rx="185" ry="28" fill="#dfd2c6"/>
+  <path d="M285 455q115-58 230 0v48H285z" fill="#75485c"/>
+  <text x="400" y="487" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#fff">MPPR</text>
+  <path d="M334 323q66-38 132 0l37 132H297z" fill="#49634d"/>
+  <path d="m346 338 54 64 54-64 27 117H319z" fill="#f8f4ec"/>
+  <circle cx="400" cy="228" r="84" fill="#e9b997"/>
+  <path d="M319 224q4-100 89-91 68 8 76 86-36-27-67-61-33 34-98 46z" fill="#44362f"/>
+  <circle cx="372" cy="234" r="6" fill="#39302c"/>
+  <circle cx="428" cy="234" r="6" fill="#39302c"/>
+  <path d="M382 267q18 15 36 0" fill="none" stroke="#995b50" stroke-width="5" stroke-linecap="round"/>
+  <path d="m340 345-53 78M460 345l53 78" fill="none" stroke="#e9b997" stroke-width="23" stroke-linecap="round"/>
+  <text x="400" y="555" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#684c3d">BONEQUINHO DECORATIVO • ARTE ILUSTRATIVA</text>
+</svg>

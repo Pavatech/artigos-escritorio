@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f7f0e9"/>
+  <circle cx="400" cy="185" r="54" fill="none" stroke="#b99a67" stroke-width="18"/>
+  <path d="M400 239v56" stroke="#b99a67" stroke-width="18"/>
+  <path d="M400 284c-99 0-180 76-180 170s81 119 180 119 180-25 180-119-81-170-180-170z" fill="#49634d" stroke="#d6bc83" stroke-width="12"/>
+  <circle cx="400" cy="427" r="120" fill="none" stroke="#d6bc83" stroke-width="4"/>
+  <text x="400" y="418" text-anchor="middle" font-family="Arial,sans-serif" font-size="58" font-weight="700" fill="#fff">MPPR</text>
+  <text x="400" y="462" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" fill="#f2dfb1">CHAVEIRO TEMÁTICO</text>
+  <text x="400" y="555" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#684c3d">PRODUTO INDEPENDENTE • ARTE ILUSTRATIVA</text>
+</svg>

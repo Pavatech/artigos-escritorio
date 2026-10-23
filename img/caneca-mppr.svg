@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f7f0e9"/>
+  <ellipse cx="380" cy="489" rx="220" ry="32" fill="#dfd2c6"/>
+  <path d="M230 174h310v258q0 56-56 56H286q-56 0-56-56z" fill="#fff" stroke="#d6c9bc" stroke-width="10"/>
+  <path d="M540 228h49q76 0 76 78t-76 78h-49" fill="none" stroke="#fff" stroke-width="28"/>
+  <path d="M540 228h49q76 0 76 78t-76 78h-49" fill="none" stroke="#d6c9bc" stroke-width="10"/>
+  <path d="M262 210h246v28H262z" fill="#49634d"/>
+  <text x="385" y="321" text-anchor="middle" font-family="Arial,sans-serif" font-size="47" font-weight="700" fill="#75485c">MPPR</text>
+  <path d="M320 344h130" stroke="#c99d72" stroke-width="4"/>
+  <text x="385" y="379" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#555">TEMA DE ESCRITÓRIO</text>
+  <text x="400" y="555" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#684c3d">CANECA TEMÁTICA • ARTE ILUSTRATIVA</text>
+</svg>

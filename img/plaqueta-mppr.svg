@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#f7f0e9"/>
+  <path d="M0 470h800v130H0z" fill="#c99d72"/>
+  <path d="m185 425 90-70h250l90 70v30H185z" fill="#80553d"/>
+  <rect x="215" y="220" width="370" height="220" rx="18" fill="#f5f2df" stroke="#9b637a" stroke-width="12"/>
+  <rect x="245" y="250" width="310" height="160" rx="10" fill="#fffdf7" stroke="#d9c9ae" stroke-width="3"/>
+  <text x="400" y="300" text-anchor="middle" font-family="Arial,sans-serif" font-size="27" font-weight="700" fill="#75485c">MPPR</text>
+  <path d="M315 319h170" stroke="#c99d72" stroke-width="3"/>
+  <text x="400" y="365" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#444">SEU NOME</text>
+  <text x="400" y="530" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" fill="#684c3d">PLAQUETA PERSONALIZÁVEL • ARTE ILUSTRATIVA</text>
+</svg>

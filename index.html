@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <header>
     <div class="header-container">
       <div class="header-title">
@@ -18,321 +17,43 @@
     </div>
   </header>
 
-  <nav>
-    <a href="#produtos" onclick="mostrarCatalogo()">Início</a>
+  <nav aria-label="Navegação principal">
+    <a href="#produtos">Início</a>
     <a href="#contato">Contato</a>
   </nav>
 
-  <div class="banner">
-    Seu espaço de trabalho, com mais estilo e praticidade
-  </div>
+  <main>
+    <div class="banner">
+      Seu espaço de trabalho, com mais estilo, praticidade e personalidade
+    </div>
 
-  <div class="pesquisa-container">
-    <input type="text" id="campoBusca" placeholder="Buscar produto..." oninput="filtrarProdutos()">
-    <button onclick="filtrarProdutos()" class="btn-buscar">Buscar</button>
-  </div>
+    <div class="pesquisa-container" id="pesquisaContainer">
+      <input type="search" id="campoBusca" placeholder="Buscar produto..." aria-label="Buscar produto">
+      <button type="button" id="botaoBuscar" class="btn-buscar">Buscar</button>
+    </div>
 
-  <section class="produtos" id="produtos"></section>
+    <section class="produtos" id="produtos" aria-label="Catálogo de produtos"></section>
+    <section class="detalhe-produto" id="detalheProduto" hidden></section>
+  </main>
 
-  <section class="detalhe-produto" id="detalheProduto" hidden></section>
-
-  <!-- Ícone flutuante do carrinho -->
-  <button class="carrinho-icon" onclick="toggleCarrinho()">
-    <i class="fas fa-shopping-cart"></i>
+  <button class="carrinho-icon" id="botaoCarrinho" type="button" aria-label="Abrir carrinho">
+    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
     <span id="carrinhoQtd">0</span>
   </button>
 
-  <!-- Popup do carrinho -->
-  <div class="popup-carrinho" id="popupCarrinho">
+  <div class="popup-carrinho" id="popupCarrinho" aria-label="Carrinho de compras">
     <h2>🛒 Carrinho</h2>
     <ul id="listaCarrinho"></ul>
-    <div id="totalCarrinho" style="margin: 10px 0; font-weight: bold;">Total: R$ 0,00</div>
-    <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar via WhatsApp</button>
+    <div id="totalCarrinho" class="total">Total: R$ 0,00</div>
+    <button class="btn-finalizar" id="finalizarCompra" type="button">Finalizar via WhatsApp</button>
   </div>
 
-  <section id="contato" style="padding: 40px; background-color: #f8edf1;">
-    <h2 style="text-align: center;">Contato</h2>
-    <p style="text-align: center;">📞 WhatsApp: (46) 99140-2714</p>
+  <section id="contato" class="contato">
+    <h2>Contato</h2>
+    <p>📞 WhatsApp: (46) 99140-2714</p>
   </section>
 
-  <script>
-    const carrinho = [];
-
-    const produtos = [
-      {
-        id: "mousepad-gamer-rosa", nome: "Mousepad Gamer Rosa LED RGB 80x30cm", preco: 64.68,
-        imagens: [
-          "https://images.kabum.com.br/produtos/fotos/sync_mirakl/688544/xlarge/Mousepad-Gamer-Rosa-LED-RGB-7-Cores-Grande-80x30cm-Antiderrapante-Usb_1761257911.jpg",
-          "https://images.kabum.com.br/produtos/fotos/sync_mirakl/688544/xlarge/Mousepad-Gamer-Rosa-LED-RGB-7-Cores-Grande-80x30cm-Antiderrapante-Usb_1761257912.jpg",
-          "https://images.kabum.com.br/produtos/fotos/sync_mirakl/688544/xlarge/Mousepad-Gamer-Rosa-LED-RGB-7-Cores-Grande-80x30cm-Antiderrapante-Usb_1761257916.jpg"
-        ],
-        descricao: "Mousepad gamer rosa de 80 x 30 cm, com base antiderrapante e iluminação LED RGB com 7 cores. Conexão USB. Preço consultado na KaBuM.",
-        relacionados: ["mouse-vertical-rosa", "teclado-force-x-rosa", "kit-marvo-wireless"]
-      },
-      {
-        id: "mouse-vertical-rosa", nome: "Mouse Vertical Sem Fio Rosa", preco: 49.90,
-        precoEstimado: true,
-        imagens: [
-          "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRu9as1NLivGChtsQ6tJy73UHY47Hg2TjGv74LyvyLP3InnCuE6SWchKzCyjJ3f11RMPEFT76XDIhG7ImoPs3Q3TpKGlmGZ4tBPuCscWFQGXhfNwF-vh-T7yw"
-        ],
-        descricao: "Mouse vertical rosa sem fio, com conexão 2,4 GHz e recarga por USB-C, conforme o produto do link enviado. Preço estimado; confirme o valor antes da venda.",
-        relacionados: ["mousepad-gamer-rosa", "apoio-punho", "teclado-force-x-rosa"]
-      },
-      {
-        id: "teclado-force-x-rosa", nome: "Teclado Force-X Rosa Rainbow", preco: 86.26,
-        imagens: [
-          "https://images.kabum.com.br/produtos/fotos/sync_mirakl/237469/xlarge/Teclado-Rosa-Force-X-Rainbow-USB-Anti-ghosting-Tc201pink_1776696540.jpg"
-        ],
-        descricao: "Teclado Force-X rosa com iluminação rainbow, padrão ABNT2, conexão USB, 19 teclas anti-ghosting e 12 teclas de atalho. Preço consultado na KaBuM.",
-        relacionados: ["mousepad-gamer-rosa", "mouse-vertical-rosa", "kit-marvo-wireless"]
-      },
-      {
-        id: "kit-marvo-wireless", nome: "Kit Teclado e Mouse Marvo Sem Fio Branco", preco: 149.90,
-        precoEstimado: true,
-        imagens: [
-          "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRS7T3NUSrUI8zOykRsS8tSNkoN3HI7hxoSdyA5Tt5SPO3XdaqHQYBiCnOB5hbkWT4cF8yRJWDP-XSzQgxoP-A4mQS-ZTenJPqDfF4A2xo8c4ZdXpqy2RUm"
-        ],
-        descricao: "Kit sem fio Marvo WS005 na cor branca, com teclado ABNT2 e mouse de 1600 DPI. Preço estimado; confirme o valor antes da venda.",
-        relacionados: ["mousepad-gamer-rosa", "suporte-notebook", "organizador-mesa"]
-      },
-      {
-        id: "suporte-notebook", nome: "Suporte Ergonômico para Notebook", preco: 59.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Suporte compacto para elevar a tela do notebook e ajudar a organizar uma estação de trabalho confortável. Imagem ilustrativa; preço estimado.",
-        relacionados: ["mousepad-gamer-rosa", "organizador-mesa", "luminaria-mesa"]
-      },
-      {
-        id: "organizador-mesa", nome: "Organizador de Mesa Multifuncional", preco: 39.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Organizador para deixar canetas, acessórios e itens do dia a dia sempre à mão. Imagem ilustrativa; preço estimado.",
-        relacionados: ["porta-canetas", "planner-semanal", "organizador-cabos"]
-      },
-      {
-        id: "luminaria-mesa", nome: "Luminária LED de Mesa", preco: 69.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Luminária de mesa para iluminar leituras e tarefas no escritório ou home office. Imagem ilustrativa; preço estimado.",
-        relacionados: ["planner-semanal", "suporte-notebook", "copo-termico"]
-      },
-      {
-        id: "porta-canetas", nome: "Porta-Canetas Minimalista", preco: 24.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Um toque organizado para guardar canetas e pequenos materiais de escritório. Imagem ilustrativa; preço estimado.",
-        relacionados: ["organizador-mesa", "planner-semanal", "kit-papelaria"]
-      },
-      {
-        id: "planner-semanal", nome: "Planner Semanal de Mesa", preco: 34.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Planner para visualizar compromissos, tarefas e prioridades da semana no trabalho. Imagem ilustrativa; preço estimado.",
-        relacionados: ["kit-papelaria", "porta-canetas", "luminaria-mesa"]
-      },
-      {
-        id: "copo-termico", nome: "Copo Térmico com Tampa", preco: 49.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Copo reutilizável para manter sua bebida favorita por perto durante o expediente. Imagem ilustrativa; preço estimado.",
-        relacionados: ["luminaria-mesa", "mousepad-gamer-rosa", "organizador-mesa"]
-      },
-      {
-        id: "apoio-punho", nome: "Apoio Ergonômico para Punho", preco: 29.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Apoio macio para punho, pensado para acompanhar teclado e mouse na mesa de trabalho. Imagem ilustrativa; preço estimado.",
-        relacionados: ["mouse-vertical-rosa", "mousepad-gamer-rosa", "teclado-force-x-rosa"]
-      },
-      {
-        id: "organizador-cabos", nome: "Kit Organizador de Cabos", preco: 14.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Acessórios simples para manter cabos e carregadores mais organizados na mesa. Imagem ilustrativa; preço estimado.",
-        relacionados: ["organizador-mesa", "kit-marvo-wireless", "suporte-notebook"]
-      },
-      {
-        id: "kit-papelaria", nome: "Kit Papelaria em Tons Pastel", preco: 32.90,
-        precoEstimado: true,
-        imagens: ["https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80"],
-        descricao: "Conjunto de papelaria para anotações, listas e planejamento da rotina profissional. Imagem ilustrativa; preço estimado.",
-        relacionados: ["planner-semanal", "porta-canetas", "organizador-mesa"]
-      },
-    ];
-
-    function formatarPreco(preco) {
-      return preco.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-    }
-
-    function carregarProdutos(lista = produtos) {
-      const container = document.getElementById('produtos');
-      container.innerHTML = '';
-      lista.forEach((prod) => {
-        const div = document.createElement('div');
-        div.className = 'produto';
-        div.innerHTML = `
-          <button class="produto-link" type="button" aria-label="Ver detalhes de ${prod.nome}">
-            <img src="${prod.imagens[0]}" alt="${prod.nome}">
-            <h3>${prod.nome}</h3>
-          </button>
-          <p>${formatarPreco(prod.preco)}</p>
-          ${prod.precoEstimado ? '<small class="aviso-preco">Preço estimado</small>' : ''}
-          <button class="btn-detalhes" type="button">Ver detalhes</button>
-          <button class="btn-comprar" onclick="adicionarAoCarrinho('${prod.nome}', ${prod.preco})">Adicionar ao carrinho</button>
-        `;
-        div.querySelector('.produto-link').addEventListener('click', () => abrirProduto(prod.id));
-        div.querySelector('.btn-detalhes').addEventListener('click', () => abrirProduto(prod.id));
-        container.appendChild(div);
-      });
-    }
-
-    function abrirProduto(id, atualizarEndereco = true) {
-      const produto = produtos.find((item) => item.id === id);
-      if (!produto) {
-        return;
-      }
-
-      const catalogo = document.getElementById('produtos');
-      const detalhe = document.getElementById('detalheProduto');
-      const relacionados = produto.relacionados
-        .map((relacionadoId) => produtos.find((item) => item.id === relacionadoId))
-        .filter(Boolean);
-
-      detalhe.innerHTML = `
-        <button class="btn-voltar" type="button">← Voltar aos produtos</button>
-        <div class="detalhe-conteudo">
-          <div class="galeria-produto">
-            <img class="foto-principal" src="${produto.imagens[0]}" alt="${produto.nome}">
-            <div class="miniaturas" aria-label="Outras fotos de ${produto.nome}">
-              ${produto.imagens.map((imagem, indice) => `
-                <button class="miniatura${indice === 0 ? ' selecionada' : ''}" type="button" data-imagem="${indice}" aria-label="Ver foto ${indice + 1} de ${produto.nome}">
-                  <img src="${imagem}" alt="">
-                </button>
-              `).join('')}
-            </div>
-          </div>
-          <div class="informacoes-produto">
-            <p class="etiqueta-produto">ACESSÓRIO PARA SUA MESA</p>
-            <h1>${produto.nome}</h1>
-            <p class="preco-detalhe">${formatarPreco(produto.preco)}</p>
-            ${produto.precoEstimado ? '<p class="aviso-preco">Preço estimado; confirme antes da compra.</p>' : ''}
-            <p class="descricao-produto">${produto.descricao}</p>
-            <button class="btn-comprar" type="button">Adicionar ao carrinho</button>
-          </div>
-        </div>
-        <section class="relacionados-produto">
-          <h2>Você também pode gostar</h2>
-          <div class="produtos relacionados-lista"></div>
-        </section>
-      `;
-
-      detalhe.querySelector('.btn-voltar').addEventListener('click', mostrarCatalogo);
-      detalhe.querySelector('.informacoes-produto .btn-comprar')
-        .addEventListener('click', () => adicionarAoCarrinho(produto.nome, produto.preco));
-      detalhe.querySelectorAll('.miniatura').forEach((miniatura) => {
-        miniatura.addEventListener('click', () => {
-          detalhe.querySelector('.foto-principal').src = produto.imagens[miniatura.dataset.imagem];
-          detalhe.querySelectorAll('.miniatura').forEach((item) => item.classList.remove('selecionada'));
-          miniatura.classList.add('selecionada');
-        });
-      });
-
-      const listaRelacionados = detalhe.querySelector('.relacionados-lista');
-      relacionados.forEach((relacionado) => {
-        const card = document.createElement('div');
-        card.className = 'produto';
-        card.innerHTML = `
-          <button class="produto-link" type="button" aria-label="Ver detalhes de ${relacionado.nome}">
-            <img src="${relacionado.imagens[0]}" alt="${relacionado.nome}">
-            <h3>${relacionado.nome}</h3>
-          </button>
-          <p>${formatarPreco(relacionado.preco)}</p>
-          ${relacionado.precoEstimado ? '<small class="aviso-preco">Preço estimado</small>' : ''}
-          <button class="btn-detalhes" type="button">Ver detalhes</button>
-        `;
-        card.querySelector('.produto-link').addEventListener('click', () => abrirProduto(relacionado.id));
-        card.querySelector('.btn-detalhes').addEventListener('click', () => abrirProduto(relacionado.id));
-        listaRelacionados.appendChild(card);
-      });
-
-      catalogo.hidden = true;
-      detalhe.hidden = false;
-      if (atualizarEndereco) {
-        window.location.hash = `produto-${produto.id}`;
-      }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function mostrarCatalogo() {
-      document.getElementById('detalheProduto').hidden = true;
-      document.getElementById('produtos').hidden = false;
-      window.location.hash = 'produtos';
-    }
-
-    window.addEventListener('hashchange', () => {
-      const idProduto = window.location.hash.slice(1).replace(/^produto-/, '');
-      if (window.location.hash.startsWith('#produto-')) {
-        abrirProduto(idProduto, false);
-      } else if (!document.getElementById('detalheProduto').hidden) {
-        document.getElementById('detalheProduto').hidden = true;
-        document.getElementById('produtos').hidden = false;
-      }
-    });
-
-    function adicionarAoCarrinho(nome, preco) {
-      carrinho.push({ nome, preco });
-      atualizarCarrinho();
-    }
-
-    function removerDoCarrinho(index) {
-      carrinho.splice(index, 1);
-      atualizarCarrinho();
-    }
-
-    function atualizarCarrinho() {
-      const lista = document.getElementById("listaCarrinho");
-      const totalSpan = document.getElementById("totalCarrinho");
-      const contador = document.getElementById("carrinhoQtd");
-      lista.innerHTML = "";
-
-      let total = 0;
-      carrinho.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.innerHTML = `${item.nome} - R$ ${item.preco.toFixed(2)} <button class='remover' onclick='removerDoCarrinho(${index})'>x</button>`;
-        lista.appendChild(li);
-        total += item.preco;
-      });
-
-      totalSpan.textContent = `Total: R$ ${total.toFixed(2)}`;
-      contador.textContent = carrinho.length;
-    }
-
-    function toggleCarrinho() {
-      const popup = document.getElementById("popupCarrinho");
-      popup.style.display = popup.style.display === "flex" ? "none" : "flex";
-    }
-
-    function finalizarCompra() {
-      if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio.");
-        return;
-      }
-      const mensagem = `Olá, gostaria de fazer o seguinte pedido:\n\n${carrinho.map(i => `• ${i.nome} - R$ ${i.preco.toFixed(2)}`).join('\n')}`;
-      const numero = "5511999999999"; // Altere para o número real
-      const url = `https://wa.me/${5546991402714}?text=${encodeURIComponent(mensagem)}`;
-      window.open(url, '_blank');
-    }
-
-    function filtrarProdutos() {
-      const termo = document.getElementById('campoBusca').value.toLowerCase();
-      const filtrados = produtos.filter(p => p.nome.toLowerCase().includes(termo));
-      carregarProdutos(filtrados);
-    }
-
-    carregarProdutos();
-    if (window.location.hash.startsWith('#produto-')) {
-      abrirProduto(window.location.hash.slice('#produto-'.length), false);
-    }
-  </script>
+  <script src="products.js" defer></script>
+  <script src="app.js" defer></script>
 </body>
 </html>
