@@ -363,6 +363,16 @@ nav a:focus-visible {
   animation: carrinho-adicionado 500ms ease;
 }
 
+body.pagina-feedback-carrinho::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  background: radial-gradient(ellipse at top right, rgba(155, 99, 122, 0.2), transparent 70%);
+  animation: feedback-na-pagina 700ms ease-out;
+}
+
 @keyframes carrinho-adicionado {
   0%, 100% {
     transform: scale(1);
@@ -372,6 +382,15 @@ nav a:focus-visible {
   }
   65% {
     transform: scale(1.1) rotate(6deg);
+  }
+}
+
+@keyframes feedback-na-pagina {
+  0%, 100% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
   }
 }
 
@@ -402,7 +421,8 @@ nav a:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .carrinho-icon.animar {
+  .carrinho-icon.animar,
+  body.pagina-feedback-carrinho::after {
     animation: none;
   }
 }

@@ -185,6 +185,9 @@
     elementos.botaoCarrinho.classList.remove("animar");
     void elementos.botaoCarrinho.offsetWidth;
     elementos.botaoCarrinho.classList.add("animar");
+    document.body.classList.remove("pagina-feedback-carrinho");
+    void document.body.offsetWidth;
+    document.body.classList.add("pagina-feedback-carrinho");
   }
 
   function removerDoCarrinho(indice) {
